@@ -21,16 +21,7 @@
 		"parentCategory":"Vehicle.Car",
 		"values":[
 			"Subaru BRZ",
-			"Mazda MX5",
-			"Nissan GTR"
-		]
-	},
-	{
-		"category":"Sport",
-		"forAll":true,
-		"parentCategory":"Vehicle.Car.Coupe",
-		"values":[
-			"Audi R8"
+			"Mazda MX5"
 		]
 	}
 ]

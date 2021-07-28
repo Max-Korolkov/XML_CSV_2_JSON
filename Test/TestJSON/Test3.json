@@ -1,0 +1,18 @@
+[
+	{
+		"category":"Test",
+		"forAll":true,
+		"parentCategory":"",
+		"values":[
+			"This is Test"
+		]
+	},
+	{
+		"category":"Child",
+		"forAll":false,
+		"parentCategory":"Test",
+		"values":[
+			"And this is Child"
+		]
+	}
+]

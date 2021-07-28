@@ -8,11 +8,10 @@ private:
 	std::string Category;
 	bool ForAll;
 	std::string ParentCategory;
+
 	std::vector<std::string> Values;
-
-public:
 	std::vector<std::shared_ptr<Node>> Children;
-
+public:
 	Node();
 
 	const std::string JSONPrint();
@@ -38,14 +37,15 @@ class MyConverter
 {
 private:
 	ParseTree Tree;
+	std::shared_ptr<Node> RecursiveXMLParser(const std::string&);
+	void CSVParser(const std::string&);
 public:
 	MyConverter();
 	MyConverter(const std::string&);
 
 	void GetDataFromXML(const std::string&);
 	void GetDataFromCSV(const std::string&);
-	std::shared_ptr<Node> RecursiveXMLParser(const std::string&);
-	void CSVParser(const std::string&);
+
 	const std::string DataToJSON();
 	const std::string DataToJSON(const std::string& csv_s);
 	const std::string DataToJSON(const std::string& xml_s, const std::string& csv_s);

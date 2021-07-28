@@ -145,8 +145,17 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="structure.xml" />
+    <Xml Include="Test\TestXML\Test1.xml" />
+    <Xml Include="Test\TestXML\Test2.xml" />
+    <Xml Include="Test\TestXML\Test3.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Test\TestCSV\Test1.csv" />
+    <None Include="Test\TestCSV\Test2.csv" />
+    <None Include="Test\TestCSV\Test3.csv" />
+    <None Include="Test\TestJSON\Test1.json" />
+    <None Include="Test\TestJSON\Test2.json" />
+    <None Include="Test\TestJSON\Test3.json" />
     <None Include="values.json" />
     <None Include="values.csv" />
   </ItemGroup>

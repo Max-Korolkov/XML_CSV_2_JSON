@@ -3,6 +3,22 @@
 #include <vector>
 #include "myConverter.h"
 
+std::string trim(const std::string& str)
+{
+	// useless symbols
+	const std::string WHITESPACE = " \t\n\v\f\r";
+
+	std::string trimmedStr = "";
+
+	// removing unnecessary symbols before and after the relevant part
+	size_t start = str.find_first_not_of(WHITESPACE);
+	trimmedStr = (start == std::string::npos) ? "" : str.substr(start);
+	size_t end = trimmedStr.find_last_not_of(WHITESPACE);
+	trimmedStr = (end == std::string::npos) ? "" : trimmedStr.substr(0, end + 1);
+
+	return trimmedStr;
+}
+
 MyConverter::MyConverter()
 {
 	Tree = nullptr;
@@ -37,10 +53,7 @@ std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) 
 	while (std::getline(tokenStream, token, '\n'))
 	{
 		// removing unnecessary symbols before and after the relevant part
-		size_t start = token.find_first_not_of(WHITESPACE);
-		token = (start == std::string::npos) ? "" : token.substr(start);
-		size_t end = token.find_last_not_of(WHITESPACE);
-		token = (end == std::string::npos) ? "" : token.substr(0, end + 1);
+		token = trim(token);
 
 		// empty strings are ignored
 		if (token != "") tokens.push_back(token);
@@ -67,12 +80,24 @@ std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) 
 	// set ForAll boolean which we got from opening tag name
 	newNodePtr->SetForAll(ForAll);
 
+	/*
+	What if not <Name> ... </Name>
+	But
+	<Name>
+		...
+	</Name>
+	????????????????
+	*/
+
 	// checking first element of a vector for the name of a category
 	token = (*tokens.begin());
 	// if this line doesn't contain opening and closing tags - error
 	if ((token.find("<Name>") == std::string::npos) || (token.find("</Name>") == std::string::npos)) return nullptr;
 	// get Category name from the string...
 	Category = token.substr(token.find("<Name>") + strlen("<Name>"), token.find("</Name>") - token.find("<Name>") - strlen("<Name>"));
+
+	// removing unnecessary symbols before and after the relevant part
+	Category = trim(Category);
 	// .. and give it to the newly created node
 	newNodePtr->SetCategory(Category);
 
@@ -161,10 +186,7 @@ void MyConverter::GetDataFromCSV(const std::string& csv_s) // parse csv data (st
 	while (std::getline(tokenStream, token, '\n'))
 	{
 		// removing unnecessary symbols before and after the relevant part
-		size_t start = token.find_first_not_of(WHITESPACE);
-		token = (start == std::string::npos) ? "" : token.substr(start);
-		size_t end = token.find_last_not_of(WHITESPACE);
-		token = (end == std::string::npos) ? "" : token.substr(0, end + 1);
+		token = trim(token);
 
 		// empty strings are ignored
 		if (token != "") tokens.push_back(token);
@@ -183,7 +205,13 @@ void MyConverter::CSVParser(const std::string& csv_s) // parse ONE csv string in
 
 	// get left and right substrings
 	size_t pos = csv_s.find(";");
-	value = csv_s.substr(pos + 2, csv_s.size() - pos - 3); // copy value without '"' symbols
+	
+	// find right substring
+	value = csv_s.substr(pos + 1);
+	// removing unnecessary symbols before and after the relevant part
+	value = trim(value);
+
+	// find left substring
 	path = csv_s.substr(0, pos);
 
 	std::shared_ptr<Node> node;
@@ -196,6 +224,8 @@ void MyConverter::CSVParser(const std::string& csv_s) // parse ONE csv string in
 	// "." is a deliminator between category names in path
 	while (std::getline(tokenStream, token, '.'))
 	{
+		// removing unnecessary symbols before and after the relevant part
+		token = trim(token);
 		// empty strings are ignored
 		if (token != "") tokens.push_back(token);
 	}
@@ -244,8 +274,8 @@ const std::string Node::JSONPrint() // print node in json format
 		stream << "\t\t\"values\":[" << std::endl;
 
 		for (unsigned i = 0; i < Values.size() - 1; i++)
-			stream << "\t\t\t\"" << Values[i] << "\"," << std::endl;
-		stream << "\t\t\t\"" << Values[Values.size() - 1] << "\"" << std::endl;
+			stream << "\t\t\t" << Values[i] << "," << std::endl;
+		stream << "\t\t\t" << Values[Values.size() - 1] << "" << std::endl;
 
 		stream << "\t\t]" << std::endl;
 		stream << "\t}," << std::endl;

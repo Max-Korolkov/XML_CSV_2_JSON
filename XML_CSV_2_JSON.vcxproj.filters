@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы ресурсов\TestXML">
+      <UniqueIdentifier>{09ef6dce-ed45-448a-9605-cc0fdda3a5fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\TestCSV">
+      <UniqueIdentifier>{ecf4f55d-6959-4c7f-88a0-cdec7399fc28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\TestJSON">
+      <UniqueIdentifier>{1884cb48-1b7b-4fc8-9be4-318a803e9f95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -26,6 +35,15 @@
     <Xml Include="structure.xml">
       <Filter>Файлы ресурсов</Filter>
     </Xml>
+    <Xml Include="Test\TestXML\Test1.xml">
+      <Filter>Файлы ресурсов\TestXML</Filter>
+    </Xml>
+    <Xml Include="Test\TestXML\Test2.xml">
+      <Filter>Файлы ресурсов\TestXML</Filter>
+    </Xml>
+    <Xml Include="Test\TestXML\Test3.xml">
+      <Filter>Файлы ресурсов\TestXML</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <None Include="values.csv">
@@ -33,6 +51,24 @@
     </None>
     <None Include="values.json">
       <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="Test\TestCSV\Test1.csv">
+      <Filter>Файлы ресурсов\TestCSV</Filter>
+    </None>
+    <None Include="Test\TestCSV\Test2.csv">
+      <Filter>Файлы ресурсов\TestCSV</Filter>
+    </None>
+    <None Include="Test\TestCSV\Test3.csv">
+      <Filter>Файлы ресурсов\TestCSV</Filter>
+    </None>
+    <None Include="Test\TestJSON\Test1.json">
+      <Filter>Файлы ресурсов\TestJSON</Filter>
+    </None>
+    <None Include="Test\TestJSON\Test2.json">
+      <Filter>Файлы ресурсов\TestJSON</Filter>
+    </None>
+    <None Include="Test\TestJSON\Test3.json">
+      <Filter>Файлы ресурсов\TestJSON</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

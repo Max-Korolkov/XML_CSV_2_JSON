@@ -15,6 +15,36 @@ int main()
 	std::ifstream fin;
 	std::ofstream fout;
 
+	for (char i = 0; i < 3; i++)
+	{
+		MyConverter Converter;
+
+		// open XML and get it's contents as a string
+		fin.open("./Test/TestXML/Test" + std::to_string(i + 1) + ".xml");
+		if (!fin) exit(-1);
+		buf.str("");
+		buf << fin.rdbuf();
+		xml = buf.str();
+		fin.close();
+
+		// open CSV and get it's contents as a string
+		fin.open("./Test/TestCSV/Test" + std::to_string(i + 1) + ".csv");
+		if (!fin) exit(-2);
+		buf.str("");
+		buf << fin.rdbuf();
+		csv = buf.str();
+		fin.close();
+
+		// generate output string from tree
+		json = Converter.DataToJSON(xml, csv);
+
+		// open JSON and output resulting string
+		fout.open("./Test/TestJSON/Test" + std::to_string(i + 1) + ".json", std::ios_base::trunc);
+		if (!fout) exit(-3);
+		fout << json;
+		fout.close();
+	}
+
 	MyConverter Converter;
 
 	// open XML and get it's contents as a string
@@ -30,7 +60,7 @@ int main()
 
 	// open CSV and get it's contents as a string
 	fin.open("values.csv");
-	if (!fin) exit(-1);
+	if (!fin) exit(-2);
 	buf.str("");
 	buf << fin.rdbuf();
 	csv = buf.str();
@@ -44,9 +74,9 @@ int main()
 
 	// open JSON and output resulting string
 	fout.open("values.json", std::ios_base::trunc);
-	if (!fout) exit(-1);
+	if (!fout) exit(-3);
 	fout << json;
 	fout.close();
-
+	
 	return 0;
 }

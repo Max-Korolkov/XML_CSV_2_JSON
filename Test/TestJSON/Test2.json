@@ -1,0 +1,11 @@
+[
+	{
+		"category":"Test",
+		"forAll":true,
+		"parentCategory":"",
+		"values":[
+			"This is a Test",
+			123
+		]
+	}
+]

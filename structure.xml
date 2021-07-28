@@ -12,11 +12,6 @@
        </Category>
        <Category>
          <Name>Coupe</Name>
-         <Children>
-           <Category everyone="">
-             <Name>Sport</Name>
-           </Category>
-         </Children>
        </Category>
       </Children>
     </Category>
