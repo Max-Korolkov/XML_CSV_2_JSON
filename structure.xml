@@ -1,0 +1,24 @@
+<Category everyone="">
+  <Name>Vehicle</Name>
+  <Children>
+    <Category everyone="">
+      <Name>Bike</Name>
+    </Category>
+    <Category>
+      <Name>Car</Name>
+      <Children>
+       <Category everyone="">
+         <Name>Sedan</Name>
+       </Category>
+       <Category>
+         <Name>Coupe</Name>
+         <Children>
+           <Category everyone="">
+             <Name>Sport</Name>
+           </Category>
+         </Children>
+       </Category>
+      </Children>
+    </Category>
+  </Children>
+</Category>

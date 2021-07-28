@@ -1,0 +1,36 @@
+[
+	{
+		"category":"Bike",
+		"forAll":true,
+		"parentCategory":"Vehicle",
+		"values":[
+			"Cube Aim Pro 29"
+		]
+	},
+	{
+		"category":"Sedan",
+		"forAll":true,
+		"parentCategory":"Vehicle.Car",
+		"values":[
+			"Vaz 2115"
+		]
+	},
+	{
+		"category":"Coupe",
+		"forAll":false,
+		"parentCategory":"Vehicle.Car",
+		"values":[
+			"Subaru BRZ",
+			"Mazda MX5",
+			"Nissan GTR"
+		]
+	},
+	{
+		"category":"Sport",
+		"forAll":true,
+		"parentCategory":"Vehicle.Car.Coupe",
+		"values":[
+			"Audi R8"
+		]
+	}
+]
