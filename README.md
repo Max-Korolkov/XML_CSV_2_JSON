@@ -40,8 +40,7 @@ Vehicle.Car.Coupe;"Mazda MX5"
 ```
 
 These files will produce the following `values.json`:
-
-```javascript
+```json
 [
 	{
 		"category":"Bike",
@@ -71,3 +70,11 @@ These files will produce the following `values.json`:
 ]
 
 ```
+
+## How it works?
+
+Contents of the two input files are read into strings, which now contain all the data. These strings, `xml` and `csv`, are passed by reference to `Converter` class, which creates a tree using information about structure from XML file and data from CSV file.
+
+#### How XML data is parsed
+
+Program expects for XML file to open with
