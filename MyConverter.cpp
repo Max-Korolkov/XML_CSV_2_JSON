@@ -32,16 +32,20 @@ void MyConverter::GetDataFromXML(const std::string& xml_s) // parse xml data (st
 {
 	// create node for parse tree
 	std::shared_ptr<Node> Root = std::make_shared<Node>();
+	// format input data to make sure it isn't one string
+	std::string formatXML = xml_s;
+	for (size_t pos = 0; pos < formatXML.size(); ++pos)
+	{
+		if (formatXML[pos] == '>') formatXML.insert(++pos, "\n");
+		if (formatXML[pos] == '<') formatXML.insert(pos++, "\n");
+	}
 	// send string to parser
-	Root = RecursiveXMLParser(xml_s);
+	Root = RecursiveXMLParser(formatXML);
 	// profit
 	Tree = Root;
 }
 std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) // recursively create nodes for all objects
 {
-	// useless symbols
-	const std::string WHITESPACE = " \t\n\v\f\r";
-
 	bool ForAll;			// ForAll atribute of Node
 	std::string Category;   // Category attribute of Node
 	
@@ -80,29 +84,23 @@ std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) 
 	// set ForAll boolean which we got from opening tag name
 	newNodePtr->SetForAll(ForAll);
 
-	/*
-	What if not <Name> ... </Name>
-	But
-	<Name>
-		...
-	</Name>
-	????????????????
-	*/
-
-	// checking first element of a vector for the name of a category
-	token = (*tokens.begin());
-	// if this line doesn't contain opening and closing tags - error
-	if ((token.find("<Name>") == std::string::npos) || (token.find("</Name>") == std::string::npos)) return nullptr;
-	// get Category name from the string...
-	Category = token.substr(token.find("<Name>") + strlen("<Name>"), token.find("</Name>") - token.find("<Name>") - strlen("<Name>"));
-
-	// removing unnecessary symbols before and after the relevant part
-	Category = trim(Category);
-	// .. and give it to the newly created node
-	newNodePtr->SetCategory(Category);
-
+	// if first tag isn't an expected one - error
+	if (*(tokens.begin()) != "<Name>") return nullptr;
 	// remove processed tag
 	tokens.erase(tokens.begin());
+
+	// if first tag isn't an expected one - error
+	Category = (*tokens.begin());
+	// remove processed tag
+	tokens.erase(tokens.begin());
+
+	newNodePtr->SetCategory(Category);
+
+	// if first tag isn't an expected one - error
+	if (*(tokens.begin()) != "</Name>") return nullptr;
+	// remove processed tag
+	tokens.erase(tokens.begin());
+
 	// if this category doesn't contain any children - return pointer to node
 	if (tokens.size() == 0) return newNodePtr;
 

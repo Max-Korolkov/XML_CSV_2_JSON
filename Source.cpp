@@ -15,7 +15,7 @@ int main()
 	std::ifstream fin;
 	std::ofstream fout;
 
-	for (char i = 0; i < 3; i++)
+	for (char i = 0; i < 4; i++)
 	{
 		MyConverter Converter;
 

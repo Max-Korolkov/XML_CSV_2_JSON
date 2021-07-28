@@ -44,6 +44,9 @@
     <Xml Include="Test\TestXML\Test3.xml">
       <Filter>Файлы ресурсов\TestXML</Filter>
     </Xml>
+    <Xml Include="Test\TestXML\Test4.xml">
+      <Filter>Файлы ресурсов\TestXML</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <None Include="values.csv">
@@ -68,6 +71,12 @@
       <Filter>Файлы ресурсов\TestJSON</Filter>
     </None>
     <None Include="Test\TestJSON\Test3.json">
+      <Filter>Файлы ресурсов\TestJSON</Filter>
+    </None>
+    <None Include="Test\TestCSV\Test4.csv">
+      <Filter>Файлы ресурсов\TestCSV</Filter>
+    </None>
+    <None Include="Test\TestJSON\Test4.json">
       <Filter>Файлы ресурсов\TestJSON</Filter>
     </None>
   </ItemGroup>
