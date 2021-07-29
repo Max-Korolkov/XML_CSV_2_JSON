@@ -22,25 +22,25 @@
     <Filter Include="Файлы ресурсов\TestJSON">
       <UniqueIdentifier>{1884cb48-1b7b-4fc8-9be4-318a803e9f95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{ad1f2891-fde9-4f62-a9d8-61d951d0820f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="MyConverter.cpp">
+    <ClCompile Include="include\MyConverter.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="StringUtils.cpp">
+    <ClCompile Include="include\Node.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
+    <ClCompile Include="include\StringUtils.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="structure.xml">
-      <Filter>Файлы ресурсов</Filter>
-    </Xml>
     <Xml Include="Test\TestXML\Test1.xml">
       <Filter>Файлы ресурсов\TestXML</Filter>
     </Xml>
@@ -53,14 +53,11 @@
     <Xml Include="Test\TestXML\Test4.xml">
       <Filter>Файлы ресурсов\TestXML</Filter>
     </Xml>
+    <Xml Include="data\structure.xml">
+      <Filter>data</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
-    <None Include="values.csv">
-      <Filter>Файлы ресурсов</Filter>
-    </None>
-    <None Include="values.json">
-      <Filter>Файлы ресурсов</Filter>
-    </None>
     <None Include="Test\TestCSV\Test1.csv">
       <Filter>Файлы ресурсов\TestCSV</Filter>
     </None>
@@ -85,15 +82,21 @@
     <None Include="Test\TestJSON\Test4.json">
       <Filter>Файлы ресурсов\TestJSON</Filter>
     </None>
+    <None Include="data\values.csv">
+      <Filter>data</Filter>
+    </None>
+    <None Include="data\values.json">
+      <Filter>data</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyConverter.h">
+    <ClInclude Include="include\MyConverter.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="StringUtils.h">
+    <ClInclude Include="include\Node.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Node.h">
+    <ClInclude Include="include\StringUtils.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

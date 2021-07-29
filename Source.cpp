@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "MyConverter.h"
+#include "./include/MyConverter.h"
 
 int main()
 {
@@ -48,7 +48,7 @@ int main()
 	MyConverter Converter;
 
 	// open XML and get it's contents as a string
-	fin.open("structure.xml");
+	fin.open("./data/structure.xml");
 	if (!fin) exit(-1);
 	buf.str("");
 	buf << fin.rdbuf();
@@ -59,7 +59,7 @@ int main()
 	Converter.GetDataFromXML(xml);
 
 	// open CSV and get it's contents as a string
-	fin.open("values.csv");
+	fin.open("./data/values.csv");
 	if (!fin) exit(-2);
 	buf.str("");
 	buf << fin.rdbuf();
@@ -73,7 +73,7 @@ int main()
 	json = Converter.DataToJSON();
 
 	// open JSON and output resulting string
-	fout.open("values.json", std::ios_base::trunc);
+	fout.open("./data/values.json", std::ios_base::trunc);
 	if (!fout) exit(-3);
 	fout << json;
 	fout.close();
