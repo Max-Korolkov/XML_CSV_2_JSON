@@ -14,7 +14,7 @@ int main()
 
 	std::ifstream fin;
 	std::ofstream fout;
-
+	/*
 	for (char i = 0; i < 4; i++)
 	{
 		MyConverter Converter;
@@ -44,7 +44,7 @@ int main()
 		fout << json;
 		fout.close();
 	}
-
+	*/
 	MyConverter Converter;
 
 	// open XML and get it's contents as a string
