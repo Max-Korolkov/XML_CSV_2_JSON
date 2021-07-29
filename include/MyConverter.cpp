@@ -8,7 +8,7 @@ MyConverter::MyConverter()
 {
 	Tree = nullptr;
 }
-MyConverter::MyConverter(const std::string& xml_s)
+MyConverter::MyConverter(const std::string& xml_s) // same, but creates tree from xml
 {
 	GetDataFromXML(xml_s);
 }

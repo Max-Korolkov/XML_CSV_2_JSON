@@ -1,7 +1,7 @@
 #include <sstream>
 #include "Node.h"
 
-Node::Node()
+Node::Node() // init attributes
 {
 	Category = "";
 	ForAll = false;
@@ -61,7 +61,7 @@ void Node::AddValue(const std::string& newValue)
 {
 	Values.push_back(newValue);
 }
-std::shared_ptr<Node> Node::CreateNewChild(const std::string& childCategory, bool childForAll)
+std::shared_ptr<Node> Node::CreateNewChild(const std::string& childCategory, bool childForAll) // return new child with set attr
 {
 	std::shared_ptr<Node> newNodePtr = std::make_shared<Node>();
 	Children.push_back(newNodePtr);
@@ -72,7 +72,7 @@ std::shared_ptr<Node> Node::CreateNewChild(const std::string& childCategory, boo
 
 	return newNodePtr;
 }
-void Node::AddExistingChild(std::shared_ptr<Node> child)
+void Node::AddExistingChild(std::shared_ptr<Node> child) // add existing node to children vector
 {
 	Children.push_back(child);
 }
@@ -97,7 +97,7 @@ int Node::GetChildrenCount()
 {
 	return Children.size();
 }
-std::shared_ptr<Node> Node::SeekNode(std::vector<std::string>& path)
+std::shared_ptr<Node> Node::SeekNode(std::vector<std::string>& path) // get ptr to node from path vector
 {
 	// if first string of "path" vector != this node "Category"
 	if (Category == *path.begin())
