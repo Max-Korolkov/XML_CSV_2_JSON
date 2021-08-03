@@ -40,12 +40,12 @@ public:
 	void SetParentCategory(const std::string&);
 	void AddValue(const std::string&);
 	std::shared_ptr<Node> CreateNewChild(const std::string&, bool);
-	void AddExistingChild(std::shared_ptr<Node>);
+	void AddExistingChild(std::shared_ptr<Node>&);
 
 	const std::string GetCategory();
 	bool GetForAll();
 	const std::string GetParentCategory();
-	int GetValueCount();
-	int GetChildrenCount();
+	size_t GetValueCount();
+	size_t GetChildrenCount();
 	std::shared_ptr<Node> SeekNode(std::vector<std::string>&);
 };

@@ -18,6 +18,7 @@ std::string trim(const std::string& str) // remove whitespace
 
 	return trimmedStr;
 }
+
 std::vector<std::string> getTokens(std::istringstream& stream, const char delim) // parse to vector
 {
 	std::vector<std::string> tokens;
@@ -28,19 +29,23 @@ std::vector<std::string> getTokens(std::istringstream& stream, const char delim)
 	{
 		token = trim(token);
 		// empty strings are ignored
-		if (token != "") tokens.push_back(token);
+		if (!token.empty())
+			tokens.push_back(token);
 	}
 
 	return tokens;
 }
+
 std::string PopTagFromTokens(std::vector<std::string>& tokens, const size_t& pos, const std::string& tag) // get elem from pos
 {
 	std::string res;
 	// if pos is out of reach
-	if (pos >= tokens.size()) return "";
+	if (pos >= tokens.size()) 
+		return "";
 
 	// if input string doesn't match elem in pos
-	if (tag != "" && tokens[pos] != tag) return "";
+	if (tag != "" && tokens[pos] != tag) 
+		return "";
 	res = tokens[pos];
 
 	// remove elem from vector

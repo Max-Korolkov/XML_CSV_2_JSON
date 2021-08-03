@@ -14,22 +14,25 @@ int main()
 
 	std::ifstream fin;
 	std::ofstream fout;
-	/*
-	for (char i = 0; i < 4; i++)
+
+	// tests
+	for (char i = 0; i < 1; i++)
 	{
 		MyConverter Converter;
 
 		// open XML and get it's contents as a string
-		fin.open("./Test/TestXML/Test" + std::to_string(i + 1) + ".xml");
-		if (!fin) exit(-1);
+		fin.open("./testdata/test" + std::to_string(i + 1) + "/test" + std::to_string(i + 1) + ".xml");
+		if (!fin) 
+			exit(-1 - (i + 1) * 10);
 		buf.str("");
 		buf << fin.rdbuf();
 		xml = buf.str();
 		fin.close();
 
 		// open CSV and get it's contents as a string
-		fin.open("./Test/TestCSV/Test" + std::to_string(i + 1) + ".csv");
-		if (!fin) exit(-2);
+		fin.open("./testdata/test" + std::to_string(i + 1) + "/test" + std::to_string(i + 1) + ".csv");
+		if (!fin) 
+			exit(-2 - (i + 1) * 10);
 		buf.str("");
 		buf << fin.rdbuf();
 		csv = buf.str();
@@ -39,17 +42,19 @@ int main()
 		json = Converter.DataToJSON(xml, csv);
 
 		// open JSON and output resulting string
-		fout.open("./Test/TestJSON/Test" + std::to_string(i + 1) + ".json", std::ios_base::trunc);
-		if (!fout) exit(-3);
+		fout.open("./testdata/test" + std::to_string(i + 1) + "/result" + std::to_string(i + 1) + ".json");
+		if (!fout) 
+			exit(-3 - (i + 1) * 10);
 		fout << json;
 		fout.close();
 	}
-	*/
+
 	MyConverter Converter;
 
 	// open XML and get it's contents as a string
 	fin.open("./data/structure.xml");
-	if (!fin) exit(-1);
+	if (!fin)
+		exit(-1);
 	buf.str("");
 	buf << fin.rdbuf();
 	xml = buf.str();
@@ -60,7 +65,8 @@ int main()
 
 	// open CSV and get it's contents as a string
 	fin.open("./data/values.csv");
-	if (!fin) exit(-2);
+	if (!fin) 
+		exit(-2);
 	buf.str("");
 	buf << fin.rdbuf();
 	csv = buf.str();
@@ -74,7 +80,8 @@ int main()
 
 	// open JSON and output resulting string
 	fout.open("./data/values.json", std::ios_base::trunc);
-	if (!fout) exit(-3);
+	if (!fout)
+		exit(-3);
 	fout << json;
 	fout.close();
 	

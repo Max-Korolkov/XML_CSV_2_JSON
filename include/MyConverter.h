@@ -22,7 +22,6 @@ private:
 	void CSVParser(const std::string&);
 public:
 	MyConverter();
-	MyConverter(const std::string&);
 
 	void GetDataFromXML(const std::string&);
 	void GetDataFromCSV(const std::string&);

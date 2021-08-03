@@ -147,22 +147,13 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="data\structure.xml" />
-    <Xml Include="Test\TestXML\Test1.xml" />
-    <Xml Include="Test\TestXML\Test2.xml" />
-    <Xml Include="Test\TestXML\Test3.xml" />
-    <Xml Include="Test\TestXML\Test4.xml" />
+    <Xml Include="testdata\test1\test1.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\values.csv" />
     <None Include="data\values.json" />
-    <None Include="Test\TestCSV\Test1.csv" />
-    <None Include="Test\TestCSV\Test2.csv" />
-    <None Include="Test\TestCSV\Test3.csv" />
-    <None Include="Test\TestCSV\Test4.csv" />
-    <None Include="Test\TestJSON\Test1.json" />
-    <None Include="Test\TestJSON\Test2.json" />
-    <None Include="Test\TestJSON\Test3.json" />
-    <None Include="Test\TestJSON\Test4.json" />
+    <None Include="testdata\test1\result1.json" />
+    <None Include="testdata\test1\test1.csv" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\MyConverter.h" />

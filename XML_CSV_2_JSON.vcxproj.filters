@@ -13,17 +13,14 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы ресурсов\TestXML">
-      <UniqueIdentifier>{09ef6dce-ed45-448a-9605-cc0fdda3a5fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы ресурсов\TestCSV">
-      <UniqueIdentifier>{ecf4f55d-6959-4c7f-88a0-cdec7399fc28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы ресурсов\TestJSON">
-      <UniqueIdentifier>{1884cb48-1b7b-4fc8-9be4-318a803e9f95}</UniqueIdentifier>
-    </Filter>
     <Filter Include="data">
       <UniqueIdentifier>{ad1f2891-fde9-4f62-a9d8-61d951d0820f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\testdata">
+      <UniqueIdentifier>{c8fa939f-7b87-490b-b308-b0eeff5ecaa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\testdata\test1">
+      <UniqueIdentifier>{202bc576-39e4-445a-91b8-ac5afea62cce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -41,52 +38,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Test\TestXML\Test1.xml">
-      <Filter>Файлы ресурсов\TestXML</Filter>
-    </Xml>
-    <Xml Include="Test\TestXML\Test2.xml">
-      <Filter>Файлы ресурсов\TestXML</Filter>
-    </Xml>
-    <Xml Include="Test\TestXML\Test3.xml">
-      <Filter>Файлы ресурсов\TestXML</Filter>
-    </Xml>
-    <Xml Include="Test\TestXML\Test4.xml">
-      <Filter>Файлы ресурсов\TestXML</Filter>
-    </Xml>
     <Xml Include="data\structure.xml">
       <Filter>data</Filter>
     </Xml>
+    <Xml Include="testdata\test1\test1.xml">
+      <Filter>Файлы ресурсов\testdata\test1</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Test\TestCSV\Test1.csv">
-      <Filter>Файлы ресурсов\TestCSV</Filter>
-    </None>
-    <None Include="Test\TestCSV\Test2.csv">
-      <Filter>Файлы ресурсов\TestCSV</Filter>
-    </None>
-    <None Include="Test\TestCSV\Test3.csv">
-      <Filter>Файлы ресурсов\TestCSV</Filter>
-    </None>
-    <None Include="Test\TestJSON\Test1.json">
-      <Filter>Файлы ресурсов\TestJSON</Filter>
-    </None>
-    <None Include="Test\TestJSON\Test2.json">
-      <Filter>Файлы ресурсов\TestJSON</Filter>
-    </None>
-    <None Include="Test\TestJSON\Test3.json">
-      <Filter>Файлы ресурсов\TestJSON</Filter>
-    </None>
-    <None Include="Test\TestCSV\Test4.csv">
-      <Filter>Файлы ресурсов\TestCSV</Filter>
-    </None>
-    <None Include="Test\TestJSON\Test4.json">
-      <Filter>Файлы ресурсов\TestJSON</Filter>
-    </None>
     <None Include="data\values.csv">
       <Filter>data</Filter>
     </None>
     <None Include="data\values.json">
       <Filter>data</Filter>
+    </None>
+    <None Include="testdata\test1\result1.json">
+      <Filter>Файлы ресурсов\testdata\test1</Filter>
+    </None>
+    <None Include="testdata\test1\test1.csv">
+      <Filter>Файлы ресурсов\testdata\test1</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -4,14 +4,11 @@
 #include "myConverter.h"
 #include "StringUtils.h"
 
-MyConverter::MyConverter()
+MyConverter::MyConverter() : Tree(nullptr)
 {
-	Tree = nullptr;
+
 }
-MyConverter::MyConverter(const std::string& xml_s) // same, but creates tree from xml
-{
-	GetDataFromXML(xml_s);
-}
+
 
 void MyConverter::GetDataFromXML(const std::string& xml_s) // parse xml data (string) into tree
 {
@@ -21,47 +18,65 @@ void MyConverter::GetDataFromXML(const std::string& xml_s) // parse xml data (st
 	std::string formatXML = xml_s;
 	for (size_t pos = 0; pos < formatXML.size(); ++pos)
 	{
-		if (formatXML[pos] == '>') formatXML.insert(++pos, "\n");
-		if (formatXML[pos] == '<') formatXML.insert(pos++, "\n");
+		// add endline AFTER ">"
+		if (formatXML[pos] == '>') 
+			formatXML.insert(++pos, "\n");
+		// add endline BEFORE "<"
+		if (formatXML[pos] == '<') 
+			formatXML.insert(pos++, "\n");
 	}
 	// send string to parser
 	Root = RecursiveXMLParser(formatXML);
 	// profit
 	Tree = Root;
 }
+
 std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) // recursively create nodes for all objects
 {
-	bool ForAll;			// ForAll atribute of Node
-	std::string Category;   // Category attribute of Node
+	bool ForAll;           // ForAll atribute of Node
+	std::string Category;  // Category attribute of Node
 	
-	std::vector<std::string> tokens;		//
-	std::string token;						//	parsing input string
+	std::vector<std::string> tokens;        //
+	std::string token;                      //	parsing input string
 	std::istringstream tokenStream(xml_s);  //
 
 	tokens = getTokens(tokenStream, '\n');
 
 	// processing category opening and closing tags
-	if (PopTagFromTokens(tokens, 0, "<Category everyone=\"\">") != "") ForAll = true;
-	else if (PopTagFromTokens(tokens, 0, "<Category>") != "") ForAll = false;
-	else return nullptr;
-	if (PopTagFromTokens(tokens, tokens.size() - 1, "</Category>") == "") return nullptr;
+	if (PopTagFromTokens(tokens, 0, "<Category everyone=\"\">") != "") 
+		ForAll = true;
+	else if (PopTagFromTokens(tokens, 0, "<Category>") != "") 
+		ForAll = false;
+	else 
+		return nullptr;
+
+	if (PopTagFromTokens(tokens, tokens.size() - 1, "</Category>") == "") 
+		return nullptr;
 
 	// create a node for new category and set ForAll
 	std::shared_ptr<Node> newNodePtr = std::make_shared<Node>();
 	newNodePtr->SetForAll(ForAll);
 
 	// processing name for the new category
-	if (PopTagFromTokens(tokens, 0, "<Name>") == "") return nullptr;
-	if ((Category = PopTagFromTokens(tokens, 0, "")) == "") return nullptr;
+	if (PopTagFromTokens(tokens, 0, "<Name>") == "") 
+		return nullptr;
+	if ((Category = PopTagFromTokens(tokens, 0, "")) == "") 
+		return nullptr;
+
 	newNodePtr->SetCategory(Category);
-	if (PopTagFromTokens(tokens, 0, "</Name>") == "") return nullptr;
+
+	if (PopTagFromTokens(tokens, 0, "</Name>") == "") 
+		return nullptr;
 
 	// if this category doesn't contain any children - return pointer to node
-	if (tokens.size() == 0) return newNodePtr;
+	if (tokens.size() == 0) 
+		return newNodePtr;
 
 	// processing children opening and closing tags
-	if (PopTagFromTokens(tokens, 0, "<Children>") == "") return nullptr;
-	if (PopTagFromTokens(tokens, tokens.size() - 1, "</Children>") == "") return nullptr;
+	if (PopTagFromTokens(tokens, 0, "<Children>") == "") 
+		return nullptr;
+	if (PopTagFromTokens(tokens, tokens.size() - 1, "</Children>") == "") 
+		return nullptr;
 
 	// while there are unprocessed tags..
 	while(tokens.size() > 0)
@@ -71,7 +86,8 @@ std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) 
 		std::vector<std::string>::iterator ChildEnd;
 
 		// first tag must always begin with a "<Category ...:
-		if ((*tokens.begin()).find("<Category") == std::string::npos) return nullptr;
+		if (tokens[0].find("<Category") == std::string::npos) 
+			return nullptr;
 
 		// first tag is part of child category
 		ChildBegin = tokens.begin();
@@ -91,7 +107,8 @@ std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) 
 			ChildStream << (*ChildEnd) << "\n";
 
 			// new opening category tag increases pairCount by 1
-			if ((*ChildEnd).find("<Category") != std::string::npos) pairCount += 1;
+			if ((*ChildEnd).find("<Category") != std::string::npos) 
+				pairCount += 1;
 			// if closing tag had been encountered
 			if ((*ChildEnd) == "</Category>")
 			{
@@ -101,15 +118,18 @@ std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) 
 					FoundNewChild = true;
 					break;
 				}
-				else pairCount -= 1; // if not, reduce pairCount by 1
+				else 
+					pairCount -= 1; // if not, reduce pairCount by 1
 			}
 		}
 		// if no children were found when expected - error
-		if (!FoundNewChild) return nullptr;
+		if (!FoundNewChild) 
+			return nullptr;
 		// create new child
 		std::shared_ptr<Node> Child = std::make_shared<Node>();
 		// send child to parser; if error occurrs - also return error
-		if ((Child = RecursiveXMLParser(ChildStream.str())) == nullptr) return nullptr;
+		if ((Child = RecursiveXMLParser(ChildStream.str())) == nullptr) 
+			return nullptr;
 		// connect parent node to child
 		newNodePtr->AddExistingChild(Child);
 		// remove tags which belong child
@@ -118,13 +138,16 @@ std::shared_ptr<Node> MyConverter::RecursiveXMLParser(const std::string& xml_s) 
 	// no error occurred - return node
 	return newNodePtr;
 }
+
+
 void MyConverter::GetDataFromCSV(const std::string& csv_s) // parse csv data (string) into existing tree
 {
 	// if no parse tree exists - error
-	if (Tree == nullptr) return;
+	if (!Tree) 
+		return;
 
-	std::vector<std::string> tokens;		//
-	std::string token;						//	parsing input string
+	std::vector<std::string> tokens;        //
+	std::string token;                      // parsing input string
 	std::istringstream tokenStream(csv_s);  //
 
 	// parsing input string into vector of strings
@@ -136,14 +159,20 @@ void MyConverter::GetDataFromCSV(const std::string& csv_s) // parse csv data (st
 		CSVParser(*it);
 	}
 }
+
 void MyConverter::CSVParser(const std::string& csv_s) // parse ONE csv string into existing tree
 {
 	// ";" is a deliminator between left and right parts of a string
-	std::string path;			// left part
-	std::string value;			// right part
+	std::string path;       // left part
+	std::string value;      // right part
 
 	// get left and right substrings
 	size_t pos = csv_s.find(";");
+
+	size_t test = csv_s.size();
+
+	// if string doesn't contain ";" delim or has no data
+	if (pos == std::string::npos || pos == csv_s.size() - 1) return;
 	
 	// find right substring
 	value = csv_s.substr(pos + 1);
@@ -163,20 +192,27 @@ void MyConverter::CSVParser(const std::string& csv_s) // parse ONE csv string in
 	// searching for correct node to put value into
 	node = Tree->SeekNode(tokens);
 	// if found, put value in it
-	if (node != nullptr) node->AddValue(value);
+	if (node) 
+		node->AddValue(value);
 }
+
+
 const std::string MyConverter::DataToJSON() // return tree data as json string
 {
 	std::string buf = "";
-	if (Tree != nullptr) buf = Tree->JSONPrint();
-	if(buf.size() != 0) buf.erase(buf.end() - 2);	// delete the unnecessary comma
+	if (Tree) 
+		buf = Tree->JSONPrint();
+	if(!buf.empty()) 
+		buf.erase(buf.end() - 2);	// delete the unnecessary comma
 	return "[\n" + buf + "]\n";
 }
+
 const std::string MyConverter::DataToJSON(const std::string& csv_s) // return tree data as json string
 {
 	GetDataFromCSV(csv_s);
 	return DataToJSON();
 }
+
 const std::string MyConverter::DataToJSON(const std::string& xml_s, const std::string& csv_s) // return tree data as json string
 {
 	GetDataFromXML(xml_s);

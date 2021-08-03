@@ -1,8 +1,0 @@
-<Category everyone="">
-  <Name>  Test      </Name>
-  <Children>
-    <Category>
-      <Name>Child</Name>
-    </Category>
-  </Children>
-</Category>
